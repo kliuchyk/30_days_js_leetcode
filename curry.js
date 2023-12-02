@@ -5,8 +5,8 @@ function curry(fn) {
     fnArgs = [...fnArgs, ...args];
 
     if (fn.length === fnArgs.length) {
-      const res = fn(...nums);
-      nums = [];
+      const res = fn(...fnArgs);
+      fnArgs = [];
       return res;
     } else {
       return curried;
