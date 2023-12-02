@@ -1,15 +1,11 @@
 function curry(fn) {
-  let fnArgs = [];
-
   return function curried(...args) {
-    fnArgs = [...fnArgs, ...args];
-
-    if (fn.length === fnArgs.length) {
-      const res = fn(...fnArgs);
-      fnArgs = [];
-      return res;
+    if (args.length >= fn.length) {
+      return fn(...args);
     } else {
-      return curried;
+      return function (...nextArgs) {
+        return curried(...args, ...nextArgs);
+      };
     }
   };
 }
